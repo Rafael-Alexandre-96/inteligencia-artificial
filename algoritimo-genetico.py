@@ -48,18 +48,34 @@ def mostrarBinDec(valBin):
     return valBin + " - " + str(formatarDecimal("0b" + valBin))
     
 def resultadoGeracao(pais, filhos):
-    print("--Pais--")
+    print("--PAIS--")
     print(list(map(mostrarBinDec, pais)))
-    print("--Filhos--")
+    print("--FILHOS--")
     print(list(map(mostrarBinDec, filhos)))
-    print("--Ranking--")
+    print("--RANKING--")
     print(list(map(mostrarBinDec, rankearPopulacao(filhos))))
-    print("--Melhores Pais--")
+    print("--MELHORES PAIS--")
     print(list(map(mostrarBinDec, selecionarMelhoresPais(filhos))))
     
-paiA = gerarAleatorio(60)
-paiB = gerarAleatorio(60)
+def criarGeracoes(quantidade):
+    paiA = "000001"
+    paiB = "000000"
+   
+    inicial = quantidade
     
-populacao = gerarPopulacao(paiA, paiB)
-
-resultadoGeracao([paiA, paiB], populacao)
+    while(quantidade > 0):
+        print("\n======GERACAO " + str(inicial - quantidade + 1) + "======")
+        populacao = gerarPopulacao(paiA, paiB)
+        resultadoGeracao([paiA, paiB], populacao)
+        paiA = selecionarMelhoresPais(populacao)[0]
+        paiB = selecionarMelhoresPais(populacao)[1]
+        quantidade -= 1
+    
+    print("\nRESULTADO:")
+    print("ESTES FORAM OS PAIS DA 1A GERACAO")
+    print(["000001 - 1", "000000 - 0"])
+    print("EM " + str(inicial) + " GERACOES ESTES FORAM OS MELHORES RESULTADOS")
+    print(list(map(mostrarBinDec, [paiA, paiB])))
+        
+print('ATRAVES DO ALGORITIMO GENETICO, \nDEVEMOS OBTER O MAIOR VALOR DECIMAL GERADO \nATRAVES DOS PAIS: ["000001 - 1", "000000 - 0"]')
+print('\nDIGITE criarGeracoes(x) SENDO x A QUANTIDADE DE GERACOES PARA SEREM EVOLUIDAS.')
