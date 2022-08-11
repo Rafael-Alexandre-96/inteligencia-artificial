@@ -27,38 +27,42 @@ def gerarMutacao(filho):
     return ''.join(val)
     
 def rankearPopulacao(populacao):
+    populacao[0] = formatarDecimal(populacao[0])
+    populacao[1] = formatarDecimal(populacao[1])
+    populacao[2] = formatarDecimal(populacao[2])
+    populacao[3] = formatarDecimal(populacao[3])
     populacao.sort(reverse=True)
+    populacao[0] = formatarBinario(populacao[0])
+    populacao[1] = formatarBinario(populacao[1])
+    populacao[2] = formatarBinario(populacao[2])
+    populacao[3] = formatarBinario(populacao[3])
     return populacao
     
 def selecionarMelhoresPais(populacao):
-    return [populacao[0], populacao[1]]
+    val = populacao
+    val = rankearPopulacao(populacao)
+    return [val[0], val[1]]
+    
+def gerarPopulacao(paiA, paiB):
+    filhoA = gerarFilho(paiA, paiB)
+    filhoB = gerarFilho(paiB, paiA)
+    filhoC = gerarMutacao(filhoA)
+    filhoD = gerarMutacao(filhoB)
+    return [filhoA, filhoB, filhoC, filhoD]
+    
+def resultadoGeracao(pais, filhos):
+    print("--Pais--")
+    print(pais)
+    print("--Filhos--")
+    print(filhos)
+    print("--Ranking--")
+    print(rankearPopulacao(filhos))
+    print("--Melhores Pais--")
+    print(selecionarMelhoresPais(filhos))
+    
+paiA = gerarAleatorio(60)
+paiB = gerarAleatorio(60)
+    
+populacao = gerarPopulacao(paiA, paiB)
 
-a = gerarAleatorio(60)
-b = gerarAleatorio(60)
-
-f1 = gerarFilho(a, b)
-f2 = gerarFilho(b, a)
-f3 = gerarMutacao(f1)
-f4 = gerarMutacao(f2)
-
-print(formatarDecimal(a))
-print(a)
-
-print(formatarDecimal(b))
-print(b)
-
-print(formatarDecimal(f1))
-print(f1)
-
-print(formatarDecimal(f2))
-print(f2)
-
-print(formatarDecimal(f3))
-print(f3)
-
-print(formatarDecimal(f4))
-print(f4)
-
-pop = [formatarDecimal(f1), formatarDecimal(f2), formatarDecimal(f3), formatarDecimal(f4)]
-print(rankearPopulacao(pop))
-print(selecionarMelhoresPais(pop))
+resultadoGeracao([paiA, paiB], populacao)
