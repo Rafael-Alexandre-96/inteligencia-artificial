@@ -1,7 +1,8 @@
 import random
 
 def gerarAleatorio(maxValue):
-    return random.randint(1, maxValue)
+    val = random.randint(1, maxValue)
+    return formatarBinario(val)
 
 def formatarBinario(valor):
     val = str(bin(valor)).replace("0b", '')
@@ -15,8 +16,6 @@ def formatarDecimal(valor):
     return int(valor, 2)
     
 def gerarFilho(paiA, paiB):
-    paiA = formatarBinario(paiA)
-    paiB = formatarBinario(paiB)
     filho = str(paiA[0])+str(paiA[1])+str(paiA[2])
     filho = filho + str(paiB[3])+str(paiB[4])+str(paiB[5])   
     return filho
@@ -35,11 +34,11 @@ f2 = gerarFilho(b, a)
 f3 = gerarMutacao(f1)
 f4 = gerarMutacao(f2)
 
+print(formatarDecimal(a))
 print(a)
-print(formatarBinario(a))
 
+print(formatarDecimal(b))
 print(b)
-print(formatarBinario(b))
 
 print(formatarDecimal(f1))
 print(f1)
