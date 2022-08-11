@@ -25,6 +25,13 @@ def gerarMutacao(filho):
     index = random.randint(0, 5)
     val[index] = '1' if (val[index] == '0') else '0'   
     return ''.join(val)
+    
+def rankearPopulacao(populacao):
+    populacao.sort(reverse=True)
+    return populacao
+    
+def selecionarMelhoresPais(populacao):
+    return [populacao[0], populacao[1]]
 
 a = gerarAleatorio(60)
 b = gerarAleatorio(60)
@@ -51,3 +58,7 @@ print(f3)
 
 print(formatarDecimal(f4))
 print(f4)
+
+pop = [formatarDecimal(f1), formatarDecimal(f2), formatarDecimal(f3), formatarDecimal(f4)]
+print(rankearPopulacao(pop))
+print(selecionarMelhoresPais(pop))
