@@ -27,15 +27,9 @@ def gerarMutacao(filho):
     return ''.join(val)
     
 def rankearPopulacao(populacao):
-    populacao[0] = formatarDecimal(populacao[0])
-    populacao[1] = formatarDecimal(populacao[1])
-    populacao[2] = formatarDecimal(populacao[2])
-    populacao[3] = formatarDecimal(populacao[3])
+    populacao = list(map(formatarDecimal, populacao))
     populacao.sort(reverse=True)
-    populacao[0] = formatarBinario(populacao[0])
-    populacao[1] = formatarBinario(populacao[1])
-    populacao[2] = formatarBinario(populacao[2])
-    populacao[3] = formatarBinario(populacao[3])
+    populacao = list(map(formatarBinario, populacao))
     return populacao
     
 def selecionarMelhoresPais(populacao):
@@ -50,15 +44,18 @@ def gerarPopulacao(paiA, paiB):
     filhoD = gerarMutacao(filhoB)
     return [filhoA, filhoB, filhoC, filhoD]
     
+def mostrarBinDec(valBin):
+    return valBin + " - " + str(formatarDecimal("0b" + valBin))
+    
 def resultadoGeracao(pais, filhos):
     print("--Pais--")
-    print(pais)
+    print(list(map(mostrarBinDec, pais)))
     print("--Filhos--")
-    print(filhos)
+    print(list(map(mostrarBinDec, filhos)))
     print("--Ranking--")
-    print(rankearPopulacao(filhos))
+    print(list(map(mostrarBinDec, rankearPopulacao(filhos))))
     print("--Melhores Pais--")
-    print(selecionarMelhoresPais(filhos))
+    print(list(map(mostrarBinDec, selecionarMelhoresPais(filhos))))
     
 paiA = gerarAleatorio(60)
 paiB = gerarAleatorio(60)
