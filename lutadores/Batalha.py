@@ -3,10 +3,20 @@ import random
 
 class Batalha:
   def __init__(self):
+    self.reinicia()
+
+  def reinicia(self):
     self.lutadorA = None
     self.lutadorB = None
     self.vencedor = None
 
+  def selecionaLutadoresAleat(self, lutadores):
+    if len(lutadores) == 0:
+      return False
+      
+    self.setLutadores(lutadores.pop(random.randint(0, len(lutadores) - 1)), lutadores.pop(random.randint(0, len(lutadores) - 1)))
+    return True
+    
   def setLutadores(self, lutadorA, lutadorB):
     self.lutadorA = lutadorA
     self.lutadorB = lutadorB
