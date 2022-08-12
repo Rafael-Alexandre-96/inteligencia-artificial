@@ -24,11 +24,11 @@ class Batalha:
   def realizarTurno(self):
     if self.lutadorA != None and self.lutadorB != None:
       dano = self.__calculaDano(self.lutadorA, self.lutadorB)
-      self.lutadorB.receberDano(dano)
+      self.lutadorB.receberDano(dano + self.lutadorB.getAzar(True) * 2)
 
       if self.__checarVida(self.lutadorB):
         dano = self.__calculaDano(self.lutadorB, self.lutadorA)
-        self.lutadorA.receberDano(dano)
+        self.lutadorA.receberDano(dano + self.lutadorA.getAzar(True) * 2)
 
         if not(self.__checarVida(self.lutadorA)):
           self.vencedor = self.lutadorB
