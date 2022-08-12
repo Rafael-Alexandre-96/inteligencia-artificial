@@ -5,6 +5,7 @@ class Lutador:
     self.nome = ""
     self.ataque = "0001"
     self.defesa = "0000"
+    self.azar = "0000"
     self.vida = "10000000"
     self.vidaInicial = "10000000"
 
@@ -22,6 +23,12 @@ class Lutador:
       return Funcoes.paraDecimal(self.defesa)
     
     return self.defesa
+
+  def getAzar(self, retornaDecimal = False):
+    if retornaDecimal:
+      return Funcoes.paraDecimal(self.azar)
+    
+    return self.azar
 
   def getVida(self, retornaDecimal = False):
     if retornaDecimal:
@@ -56,6 +63,12 @@ class Lutador:
     else:
       self.defesa = valor
 
+  def setAzar(self, valor, insereDecimal = False):
+    if insereDecimal:
+      self.azar = Funcoes.paraBinario(valor)
+    else:
+      self.azar = valor
+
   def setVida(self, valor, insereDecimal = False):
     if insereDecimal:
       self.vida = Funcoes.paraBinario(valor, 8)
@@ -68,4 +81,4 @@ class Lutador:
     self.vida = self.vidaInicial
 
   def print(self):
-    print(self.nome + " / ATK:" + str(self.getAtaque(True)) + " DEF:" + str(self.getDefesa(True)) + " HP:" + str(self.getVida(True)))
+    print(self.nome + " / ATK:" + str(self.getAtaque(True)) + " DEF:" + str(self.getDefesa(True)) + " HP:" + str(self.getVida(True)) + " AZ:" + str(self.getAzar(True)))
