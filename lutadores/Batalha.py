@@ -34,6 +34,8 @@ class Batalha:
   def __calculaDano(self, lutadorA, lutadorB):
     if lutadorA != None and lutadorB != None:
       dano = (lutadorA.getAtaque(True) * 2) - (lutadorB.getDefesa(True))
+      if dano < 0:
+        dano *= -1
       dano = dano + random.randint(-int(dano/2), int(dano/2))
       return dano
 
