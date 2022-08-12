@@ -1,6 +1,6 @@
-def paraBinario(decimal):
+def paraBinario(decimal, tamanho = 4):
   val = str(bin(decimal)).replace("0b", '')
-  i = 4 - len(val)
+  i = tamanho - len(val)
   while(i > 0):
       val = "0" + val
       i -= 1
