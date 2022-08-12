@@ -4,7 +4,7 @@ import random
 def gerarLutador(nome = ''):
   lutador = Lutador()
   lutador.setNome(nome)
-  lutador.setAtaque(random.randint(0, 3), True)
+  lutador.setAtaque(random.randint(1, 3), True)
   lutador.setDefesa(random.randint(0, 3), True)
   lutador.setVida(random.randint(0, 80), True)
   return lutador
