@@ -45,8 +45,10 @@ class Batalha:
     if lutadorA != None and lutadorB != None:
       dano = (lutadorA.getAtaque(True) * 2) - (lutadorB.getDefesa(True))
       if dano < 0:
-        dano *= -1
+        dano = 1
       dano = dano + random.randint(-int(dano/2), int(dano/2))
+      if dano < 0:
+        dano = 1
       return dano
 
     return 0
