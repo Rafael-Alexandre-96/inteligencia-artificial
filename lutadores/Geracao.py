@@ -1,8 +1,31 @@
 from Lutador import Lutador
 import random
 
+def gerarLutador(nome = ''):
+  lutador = Lutador()
+  lutador.setNome(nome)
+  lutador.setAtaque(random.randint(0, 3), True)
+  lutador.setDefesa(random.randint(0, 3), True)
+  lutador.setVida(random.randint(0, 80), True)
+  return lutador
+
 def gerarFilho(lutadorA, lutadorB):
   filho = Lutador()
+  filho.setNome(__gerarNome(lutadorA.getNome(), lutadorB.getNome()))
+  filho.setAtaque(__gerarDna(lutadorA.getAtaque(), lutadorB.getAtaque()))
+  filho.setDefesa(__gerarDna(lutadorA.getDefesa(), lutadorB.getDefesa()))
+  filho.setVida(__gerarDna(lutadorA.getVida(), lutadorB.getVida()))
+  return filho
+
+def gerarFilhos(pais):
+  filhos = []
+  for paiA in pais:
+    for paiB in pais:
+      filhos.append(gerarFilho(paiA, paiB))
+  return filhos
+
+def __gerarNome(nomeA, nomeB):
+  return nomeA.split('-')[0] + '-' + nomeB.split('-')[1]
 
 def __gerarDna(dnaA, dnaB):
   tamanho = len(dnaA) / 2
@@ -17,7 +40,6 @@ def __gerarDna(dnaA, dnaB):
     i += 1
   if(random.randint(0, 1) == 1):
     novoDna = __criarMutacao(novoDna)
-    print("Fez mutação")
   return novoDna
 
 def __criarMutacao(dna):
