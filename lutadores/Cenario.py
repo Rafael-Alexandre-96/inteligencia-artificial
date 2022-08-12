@@ -1,28 +1,51 @@
 from Lutador import Lutador
 from Batalha import Batalha
+import Geracao
 
-lutadorA = Lutador()
-lutadorB = Lutador()
+def realizarBatalhas(lutadores):
+  batalha = Batalha()
+  novosFilhos = []
 
-lutadorA.setNome("Rafael")
-lutadorA.setAtaque(5, True)
-lutadorA.setDefesa(5, True)
+  while(batalha.selecionaLutadoresAleat(lutadores)):
+    while(batalha.getVencedor() == None):
+      batalha.realizarTurno()
 
-lutadorB.setNome("João")
-lutadorB.setAtaque(5, True)
-lutadorB.setDefesa(5, True)
+    novosFilhos.append(batalha.getVencedor())
+    batalha.reinicia()
 
-lutadorA.print()
-lutadorB.print()
+  return novosFilhos
 
-batalha = Batalha()
-batalha.setLutadores(lutadorA, lutadorB)
+pais = [Geracao.gerarLutador('Raf-Rur'), Geracao.gerarLutador('Khor-Kul'), Geracao.gerarLutador('Tyr-Tous'), Geracao.gerarLutador('Lif-Lost')]
+print("PAIS")
+for pai in pais:
+  pai.print()
 
-while(batalha.getVencedor() == None):
-  batalha.realizarTurno()
+filhos = Geracao.gerarFilhos(pais)
+print("FILHOS")
+for filho in filhos:
+  filho.print()
 
-  lutadorA.print()
-  lutadorB.print()
+filhos = realizarBatalhas(filhos)
+filhos = realizarBatalhas(filhos)
 
-print("Vencedor")
-batalha.getVencedor().print()
+i = 0
+
+while(i < 10):
+  print("Geração: " + str(i))
+
+  print("PAIS")
+  for filho in filhos:
+    filho.print() 
+
+  filhos = Geracao.gerarFilhos(filhos)
+  print("FILHOS")
+  for filho in filhos:
+    filho.print() 
+
+  filhos = realizarBatalhas(filhos)
+  filhos = realizarBatalhas(filhos)
+  i += 1
+
+print("MELHORES")
+for filho in filhos:
+  filho.print()
