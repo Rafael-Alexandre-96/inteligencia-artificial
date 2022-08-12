@@ -3,7 +3,7 @@ import Funcoes
 class Lutador:
   def __init__(self):
     self.nome = ""
-    self.ataque = "0000"
+    self.ataque = "0001"
     self.defesa = "0000"
     self.vida = "10000000"
     self.vidaInicial = "10000000"
@@ -42,8 +42,12 @@ class Lutador:
 
   def setAtaque(self, valor, insereDecimal = False):
     if insereDecimal:
+      if valor == 0:
+        valor = 1
       self.ataque = Funcoes.paraBinario(valor)
     else:
+      if valor == "0000":
+        valor = "0001"
       self.ataque = valor
 
   def setDefesa(self, valor, insereDecimal = False):
