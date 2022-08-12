@@ -6,6 +6,7 @@ def gerarLutador(nome = ''):
   lutador.setNome(nome)
   lutador.setAtaque(random.randint(1, 3), True)
   lutador.setDefesa(random.randint(0, 3), True)
+  lutador.setAzar(random.randint(0, 3), True)
   lutador.setVida(random.randint(0, 80), True)
   return lutador
 
@@ -14,6 +15,7 @@ def gerarFilho(lutadorA, lutadorB):
   filho.setNome(__gerarNome(lutadorA.getNome(), lutadorB.getNome()))
   filho.setAtaque(__gerarDna(lutadorA.getAtaque(), lutadorB.getAtaque()))
   filho.setDefesa(__gerarDna(lutadorA.getDefesa(), lutadorB.getDefesa()))
+  filho.setAzar(__gerarDna(lutadorA.getAzar(), lutadorB.getAzar()))
   filho.setVida(__gerarDna(lutadorA.getVida(), lutadorB.getVida()))
   return filho
 
