@@ -26,17 +26,18 @@ class Batalha:
       dano = self.__calculaDano(self.lutadorA, self.lutadorB)
       self.lutadorB.receberDano(dano)
 
-      if self.__checarVida(self.lutadorB):
+      if self.lutadorB.checarVida():
         dano = self.__calculaDano(self.lutadorB, self.lutadorA)
         self.lutadorA.receberDano(dano)
 
-        if not(self.__checarVida(self.lutadorA)):
+        if not(self.lutadorA.checarVida()):
           self.vencedor = self.lutadorB
           self.vencedor.reiniciaVida()
-          
       else:
         self.vencedor = self.lutadorA
         self.vencedor.reiniciaVida()
+    else:
+      raise Exception("Batalha realizarTurno(): Lutadores não setados")
 
   def getVencedor(self):
     return self.vencedor
@@ -47,14 +48,6 @@ class Batalha:
       if dano < 0:
         dano = 1
       dano = dano + random.randint(-int(dano/2), int(dano/2))
-      if dano < 0:
-        dano = 1
       return dano
-
-    return 0
-
-  def __checarVida(self, lutador):
-    if lutador.getVida(True) > 0:
-      return True
-    
-    return False
+    else:
+      raise Exception("Batalha __calculaDano(): Lutadores não setados")

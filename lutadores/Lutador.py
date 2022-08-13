@@ -30,12 +30,18 @@ class Lutador:
     return self.vida
 
   def receberDano(self, dano):
+    if dano < 1:
+      dano = 1
     vida = Funcoes.paraDecimal(self.vida) - dano
-
     if vida < 0:
       vida = 0
-
     self.vida = Funcoes.paraBinario(vida, 8)
+
+  def checarVida(self):
+    if self.getVida(True) > 0:
+      return True
+    
+    return False
 
   def setNome(self, nome):
     self.nome = nome
